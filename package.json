@@ -1,0 +1,44 @@
+{
+  "name": "ssm-run-command",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "pnpm run format && pnpm run package",
+    "test:ci": "pnpm jest",
+    "coverage": "pnpm make-coverage-badge --output-path ./badges/coverage.svg",
+    "format": "pnpm prettier --write .",
+    "format:check": "pnpm prettier --check .",
+    "lint": "pnpm eslint .",
+    "build": "pnpm ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "build:watch": "pnpm run build -- --watch",
+    "test": "pnpm jest",
+    "build:all": "pnpm run format && pnpm run lint && pnpm run test && pnpm run coverage && pnpm run build"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "ipatterson10",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.5.5",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@typescript-eslint/parser": "^8.6.0",
+    "@vercel/ncc": "^0.38.2",
+    "eslint": "^9.11.0",
+    "eslint-plugin-jest": "^28.8.3",
+    "eslint-plugin-prettier": "^5.2.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3",
+    "prettier-eslint": "^16.3.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@aws-sdk/client-ssm": "^3.654.0",
+    "tslog": "^4.9.3"
+  }
+}

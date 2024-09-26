@@ -1,0 +1,32 @@
+name: 'Run SSM Command'
+description: 'Run SSM Command on EC2 instances'
+inputs:
+  aws-access-key-id:
+    required: true
+    description: 'AWS access key id'
+  aws-secret-access-key:
+    required: true
+    description: 'AWS secret access key'
+  region:
+    required: true
+    description: 'Where EC2 instance is'
+  instance-ids:
+    required: true
+    description: 'AWS EC2 Instance id or ids'
+  command:
+    required: true
+    description: 'Bash command you want to execute'
+  working-dir:
+    required: true
+    description: 'Command execution location'
+outputs:
+  status:
+    description: 'The status of the command'
+  error:
+    description: 'The error message if the command failed'
+  response:
+    description: 'The response from the command as JSON'
+
+runs:
+  using: node20
+  main: dist/index.js
